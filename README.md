@@ -32,7 +32,7 @@ Binary image classification project using HOG, LBP, GLCM, and VGG19 (FC7 layer) 
 
 ## 📊 Confusion Matrix
 
-![Confusion Matrix](./confusion_matrix.png)
+![Confusion Matrix](https://github.com/ak-abdullah/Digital-Image-Processing/raw/main/output.png)
 
 ---
 

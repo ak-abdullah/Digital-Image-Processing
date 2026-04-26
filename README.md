@@ -12,25 +12,15 @@ Dataset: MIT Pedestrian dataset with 600 male and 600 female images (female clas
 
 ---
 
-## ⚡ How it works
+## ⚡ Pipeline
 
-```mermaid
-flowchart TD
-    A[MIT Pedestrian Dataset\n600 male, 288 female] --> B[Data Augmentation\nflip, rotate, scale to balance female class to 600]
-    B --> C[Preprocessing\nresize 224x224, grayscale, CLAHE contrast enhancement]
-    C --> D[Low-Level Features\nHOG + LBP + GLCM]
-    C --> E[High-Level Features\nVGG19 FC2 layer 4096-dim deep features]
-    D --> F[Serial Feature Fusion]
-    E --> F
-    F --> G[PCA\n95% variance retained]
-    G --> H[Linear SVM]
-    H --> I[10-Fold Stratified Cross-Validation]
-    I --> J[Accuracy, Precision, Recall, F1, Confusion Matrix]
-
-    style A fill:#1e293b,color:#f8fafc,stroke:#334155
-    style G fill:#0f172a,color:#f8fafc,stroke:#6366f1
-    style J fill:#0f172a,color:#f8fafc,stroke:#22c55e
-```
+1. **Data preparation** — loaded 600 male and 288 female pedestrian images from the MIT dataset. Augmented the female class using flip, rotation, and scaling to balance it to 600 images.
+2. **Preprocessing** — resized all images to 224x224, converted to grayscale, applied CLAHE contrast enhancement.
+3. **Low-level features** — extracted HOG, LBP, and GLCM features from preprocessed grayscale images.
+4. **Deep features** — extracted 4096-dimensional features from VGG19 FC2 layer using the original RGB images.
+5. **Feature fusion** — concatenated low-level and deep features into a single vector per image.
+6. **PCA** — reduced dimensionality while retaining 95% of variance.
+7. **Classification** — trained Linear SVM evaluated with 10-fold stratified cross-validation.
 
 ---
 
